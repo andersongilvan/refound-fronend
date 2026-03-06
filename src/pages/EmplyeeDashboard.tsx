@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { RefoundItem, type RefoundItemsProps } from "../components/RefoundItem"
 import { Pagination } from "../components/Pagination"
 import { api } from "../services/api"
-import { useAuth } from "../hooks/useAuth"
 import type { RefoundsPaginationResponse } from "../dtos/refound"
 import { CATEGORIES } from "../utils/categies"
 import { formatCurrency } from "../utils/formatCurrency"
@@ -11,9 +10,6 @@ import trashIcon from '../assets/icons/trash-icon.svg'
 const PER_PAGE = 10
 
 export function EmployeeDshboard() {
-
-    const userAut = useAuth()
-
 
     const [page, setPage] = useState(1)
 
@@ -50,7 +46,7 @@ export function EmployeeDshboard() {
             }
         }))
 
-        console.log(response)
+        setTotalPages(response.data.totalPages)
     }
 
     async function deleteRefound(id: string) {
@@ -75,12 +71,12 @@ export function EmployeeDshboard() {
                 >Minhas solicitações</h1>
 
                 <a
-                className="text-sm font-semibold text-green-100 underline hover:opacity-50 transition ease-linear"
-                href="/refound">Nova solicitação</a>
+                    className="text-sm font-semibold text-green-100 underline hover:opacity-50 transition ease-linear"
+                    href="/refound">Nova solicitação</a>
 
             </div>
 
-            <main className="mt-6 flex flex-col gap-4 px-1 max-h-[343px] overflow-x-scroll">
+            <main className="mt-6 flex flex-col gap-4 px-1 max-h-85.75 overflow-x-scroll">
                 {
                     refounds.map((refound) => <RefoundItem key={refound.id} data={refound}>
                         <img

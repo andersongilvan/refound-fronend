@@ -78,7 +78,7 @@ export function DashBoard() {
                     <img src={lupa} alt="" />
                 </Button>
             </form>
-            <main className="mt-6 flex flex-col gap-4 px-1 max-h-[343px] overflow-x-scroll">
+            <main className="mt-6 flex flex-col gap-4 px-1 max-h-85.75 overflow-x-scroll">
                 {
                     refounds.map((item) => <RefoundItem key={item.id} data={item} href={`/refound/${item.id}`} />)
                 }
